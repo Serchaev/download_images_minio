@@ -37,7 +37,7 @@ async def main(image_url: str):
                 )
             )
 
-        _ = await gather(*tasks, return_exceptions=True)
+        _ = await gather(*tasks)
 
 
 # Запускаем main с помощью asyncio
