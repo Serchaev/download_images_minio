@@ -26,18 +26,13 @@ async def main(image_url: str):
     makedirs(path.dirname("./images/"), exist_ok=True)
 
     async with ClientSession() as session:
-        tasks = []
         for link in lines_list:
             image_name = link.replace("/", ".")[1:-1]
-            tasks.append(
-                download_image(
-                    session=session,
-                    url=f"{image_url}{link[1:-1]}",
-                    save_path=f"./images/{image_name}",
-                )
+            await download_image(
+                session=session,
+                url=f"{image_url}{link[1:-1]}",
+                save_path=f"./images/{image_name}",
             )
-
-        _ = await gather(*tasks)
 
 
 # Запускаем main с помощью asyncio
